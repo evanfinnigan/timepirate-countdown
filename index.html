@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Timepirate</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"> 
+  </head>
+
+
+<body>
+
+  <style>
+
+    body {
+      text-align: center;
+      background-color: black;
+    }
+
+    video {
+      margin: auto;
+      width: 400px;
+      /* height: 371px; */
+      max-width: 90%;
+      margin-top: 3em;
+      margin-bottom: 3em;
+    }
+
+    /* @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap'); */
+    
+    .big-font {
+      font-size: 24px;
+    }
+    
+    @media only screen and (min-width: 500px) {
+    .big-font {
+        font-size: 54px;
+      }
+    }
+  </style>
+
+  <video autoplay muted>
+    <source src="media/logo-square.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> 
+
+    <!-- Display the countdown timer in an element -->
+  <table id="countdown" class="big-font" style="color:#02fffc; text-align: center; font-family: 'Share Tech Mono', monospace; margin: auto; width: 100%; max-width: 554px;"></table>
+  
+  
+  <script>
+    
+    function twoDigit(number) {
+    return ("0" + number).slice(-2);
+    }
+    
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jan 16, 2021 00:00:00").getTime();
+  
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+  
+    // Get today's date and time
+    var now = new Date().getTime();
+  
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+  
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+    // Display the result in the element with id="demo"
+    let htmlString = `
+      <tr class="big-font" style="text-align: center;">
+        <td>${twoDigit(days)}</td>
+          <td> : </td>
+          <td>${twoDigit(hours)}</td>
+          <td> : </td>
+          <td>${twoDigit(minutes)}</td>
+          <td> : </td>
+          <td>${twoDigit(seconds)}</td>
+      </tr>
+      <tr style="font-size: 16px; text-align: center;">
+        <td>days</td>
+          <td></td>
+          <td>hours</td>
+          <td></td>
+          <td>minutes</td>
+          <td></td>
+          <td>seconds</td>
+      </tr>`;
+      
+    document.getElementById("countdown").innerHTML = htmlString;
+  
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML = "EXPIRED";
+    }
+  }, 1000);
+  </script>
+
+<footer>
+</footer>
+
+</body>
+</html>
